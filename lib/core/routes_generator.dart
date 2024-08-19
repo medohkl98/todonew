@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:todonew/core/page_routes_name.dart';
+import 'package:todonew/modules/layout/layout_view.dart';
 import 'package:todonew/modules/login/login_view.dart';
+import 'package:todonew/modules/registration/registration_view.dart';
 import 'package:todonew/modules/splash/splash_view.dart';
 
 class RoutesGenerator {
@@ -20,7 +22,17 @@ class RoutesGenerator {
           builder: (context) => const LoginView(),
           settings: settings,
         );
-      default: 
+        case PageRoutesName.registr:
+        return MaterialPageRoute(
+          builder: (context) => const RegstrView(),
+          settings: settings,
+        );
+        case PageRoutesName.layout:
+        return MaterialPageRoute(
+          builder: (context) => const LayoutView(),
+          settings: settings,
+        );
+      default:
         return MaterialPageRoute(builder:
             (context) =>SplashView(),
             settings: settings

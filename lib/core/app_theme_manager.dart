@@ -17,6 +17,18 @@ static Color primaryMainColor=const Color(0xff5D9CEC);
          color: Colors.white,
        ),
      ),
+     bottomNavigationBarTheme: BottomNavigationBarThemeData(
+       selectedIconTheme: IconThemeData(
+         size: 35,
+         color: primaryMainColor,
+       ),
+         unselectedIconTheme: const IconThemeData(
+           size: 30,
+           color: Color(0xffC8C9CB),
+         ),
+       showSelectedLabels: false,
+       showUnselectedLabels: false,
+     ),
      textTheme: const TextTheme(
          titleLarge: TextStyle(
            fontFamily: "Poppins",
