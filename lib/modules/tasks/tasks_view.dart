@@ -50,9 +50,9 @@ class _TasksViewState extends State<TasksView> {
                   width: mediaQuery.size.width,
                   child: EasyInfiniteDateTimeLine(
                     controller: _controller,
-                    firstDate: DateTime(2023),
+                    firstDate: DateTime.now(),
                     focusDate: _focusDate,
-                    lastDate: DateTime(2023, 12, 31),
+                    lastDate: DateTime(2025, 12, 31),
                     onDateChange: (selectedDate) {
                       setState(() {
                         _focusDate = selectedDate;
@@ -130,7 +130,7 @@ class _TasksViewState extends State<TasksView> {
             padding: EdgeInsets.zero,
             itemBuilder:(context, index) => TaskWidget(),
 
-          itemCount: 1,
+          itemCount: 10,
           ),
         )
     ]);

@@ -20,6 +20,7 @@ class _LayoutViewState extends State<LayoutView> {
   Widget build(BuildContext context) {
     ThemeData theme =Theme.of(context);
     return Scaffold(
+      extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         elevation: 2,

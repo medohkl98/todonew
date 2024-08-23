@@ -35,18 +35,34 @@ class TaskWidget extends StatelessWidget {
 
 
             ),
-            Text("10 am ",
-            style: theme.textTheme.displaySmall?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: theme.primaryColor
-            ),
+            Row(
+              children: [
+                const Icon(Icons.alarm),
+                SizedBox(width: 7,),
+                Text("10 am ",
+                style: theme.textTheme.displaySmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: theme.primaryColor
+                ),
 
 
+                ),
+              ],
             ),
 
 
           ],
         ),
+        trailing: Container(
+          width: 75,
+          height: 35,
+          decoration: BoxDecoration(
+            color: theme.primaryColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
+            child: Icon(Icons.check,size: 30, color: Colors.white,),
+        ),
+
 
       ),
     );
