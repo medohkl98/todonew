@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todonew/modules/settings/settings_view.dart';
-import 'package:todonew/modules/tasks/tasks_view.dart';
+
+
+import '../settings/settings_view.dart';
+import '../tasks/tasks_view.dart';
 
 class LayoutView extends StatefulWidget {
   const LayoutView({super.key});

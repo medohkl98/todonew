@@ -1,7 +1,7 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todonew/modules/tasks/widgets/tasks_widget.dart';
+import 'package:todonew/features/tasks/widgets/tasks_widget.dart';
 
 class TasksView extends StatefulWidget {
   const TasksView({super.key});

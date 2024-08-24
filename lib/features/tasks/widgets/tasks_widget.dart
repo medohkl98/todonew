@@ -50,7 +50,6 @@ class TaskWidget extends StatelessWidget {
               ],
             ),
 
-
           ],
         ),
         trailing: Container(

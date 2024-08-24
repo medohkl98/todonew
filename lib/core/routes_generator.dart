@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:todonew/core/page_routes_name.dart';
-import 'package:todonew/modules/layout/layout_view.dart';
-import 'package:todonew/modules/login/login_view.dart';
-import 'package:todonew/modules/registration/registration_view.dart';
-import 'package:todonew/modules/splash/splash_view.dart';
+import 'package:todonew/features/layout/layout_view.dart';
+import 'package:todonew/features/login/login_view.dart';
+import 'package:todonew/features/registration/registration_view.dart';
+import 'package:todonew/features/splash/splash_view.dart';
 
 class RoutesGenerator {
   // static const String intial="/";
