@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todonew/features/tasks/widgets/addtaskbottomsheet.dart';
 
 
 import '../settings/settings_view.dart';
@@ -32,7 +33,11 @@ class _LayoutViewState extends State<LayoutView> {
           borderRadius: BorderRadius.circular(40)
         ),
         onPressed: () {
-
+            showModalBottomSheet(
+              backgroundColor: Colors.transparent,
+              context: context,
+              builder: (context) => AddTaskBottomSheetWidget(),
+            );
       },
         child: CircleAvatar(
           radius: 25,

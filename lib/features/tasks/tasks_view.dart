@@ -125,6 +125,8 @@ class _TasksViewState extends State<TasksView> {
                 ],
               ),
         ),
+        // FutureBuilder(
+        //     future: future, builder: builder)
         Expanded(
           child: ListView.builder(
             padding: EdgeInsets.zero,
