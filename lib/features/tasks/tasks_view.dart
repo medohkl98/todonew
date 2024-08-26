@@ -151,6 +151,7 @@ class _TasksViewState extends State<TasksView> {
               return ListView.builder(
                 padding: EdgeInsets.zero,
                 itemBuilder: (context, index) => TaskWidget(data: tasksList[index],),
+
                 itemCount:  tasksList?.length??0,
               );
             },

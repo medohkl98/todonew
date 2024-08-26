@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todonew/core/firebase_utils.dart';
 import 'package:todonew/core/page_routes_name.dart';
 
 class LoginView extends StatefulWidget {
@@ -207,12 +208,19 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           onPressed: ()
                           {
-                            Navigator.pushReplacementNamed(context, PageRoutesName.layout);
+                            //Navigator.pushReplacementNamed(context, PageRoutesName.layout);
                            // print(emailController.text);
-                           //  if (formKey.currentState!.validate()){
-                           //    print("object");
-                           //
-                           //  }
+                            if (formKey.currentState!.validate()){
+                              //print("object");
+                              FirebaseUtils.signIn(emailController.text, passController.text).then(
+                                      (value) {
+                                        if(value){
+                                          Navigator.pushReplacementNamed(context, PageRoutesName.layout);
+                                        }
+                                      }
+                              );
+
+                            }
                           }
                           , child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween ,
