@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todonew/core/firebase_utils.dart';
 import 'package:todonew/features/tasks/widgets/tasks_widget.dart';
+import 'package:todonew/models/task_model.dart';
 
 class TasksView extends StatefulWidget {
   const TasksView({super.key});
@@ -125,16 +128,69 @@ class _TasksViewState extends State<TasksView> {
                 ],
               ),
         ),
-        // FutureBuilder(
-        //     future: future, builder: builder)
         Expanded(
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            itemBuilder:(context, index) => TaskWidget(),
+          child: StreamBuilder<QuerySnapshot<TaskModel>>(
+            stream: FirebaseUtils.getStream(_focusDate),
+            builder: (context, snapshot) {
+              if (snapshot.hasError){
+                return const Center(
+                  child: Text(
+                    "Error",
+                  ),
+                );
 
-          itemCount: 10,
+              }
+              if (snapshot.connectionState==ConnectionState.waiting){
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: theme.primaryColor,
+                  ),
+                );
+              }
+             List<TaskModel>tasksList= snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+              return ListView.builder(
+                padding: EdgeInsets.zero,
+                itemBuilder: (context, index) => TaskWidget(data: tasksList[index],),
+                itemCount:  tasksList?.length??0,
+              );
+            },
           ),
-        )
+        ),
+        // Expanded(
+        //   child: FutureBuilder(
+        //       future: FirebaseUtils.getDocument(_focusDate),
+        //       builder: (context, snapshot) {
+        //         if (snapshot.hasError){
+        //   return const Center(
+        //     child: Text(
+        //     "Error",
+        //     ),
+        //   );
+        //
+        //       }
+        //       if (snapshot.connectionState==ConnectionState.waiting){
+        //       return Center(
+        //         child: CircularProgressIndicator(
+        //         color: theme.primaryColor,
+        //         ),
+        //       );
+        //       }
+        //       return ListView.builder(
+        //         padding: EdgeInsets.zero,
+        //         itemBuilder: (context, index) => TaskWidget(data: snapshot.data![index],),
+        //       itemCount:  snapshot.data?.length??0,
+        //       );
+        //       },
+        //       ),
+        // ),
+        // Expanded(
+        //   child: ListView.builder(
+        //     padding: EdgeInsets.zero,
+        //     itemBuilder:(context, index) => TaskWidget(),
+        //
+        //   itemCount: 10,
+        //   ),
+
     ]);
   }
 }

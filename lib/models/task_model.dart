@@ -1,7 +1,9 @@
+import 'package:todonew/core/utiles.dart';
+
 class TaskModel{
   static const String collectionName="TasksCollection";
   String? id;
-  String? title;
+  String title;
   String description;
   DateTime selectedDate;
   bool isDone;
@@ -17,7 +19,7 @@ class TaskModel{
     id: json["id"],
     title: json["title"],
       description: json["description"],
-      selectedDate: DateTime.fromMicrosecondsSinceEpoch(json["selectedDate"]),
+      selectedDate: DateTime.fromMillisecondsSinceEpoch(json["selectedDate"]),
     isDone: json["isDone"],
   );
   Map <String, dynamic>  toFireStore(){
@@ -25,7 +27,7 @@ class TaskModel{
       "id":id,
       "title":title,
       "description":description,
-      "selectedDate":selectedDate.microsecondsSinceEpoch,
+      "selectedDate":(selectedDate).millisecondsSinceEpoch,
       "isDone":isDone,
 
 

@@ -22,141 +22,145 @@ class _AddTaskBottomSheetWidgetState extends State<AddTaskBottomSheetWidget> {
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery =MediaQuery.of(context);
     ThemeData theme =Theme.of(context);
-    return Container(
-      padding: const EdgeInsets.only(
-        top: 29,
-        right: 20,
-        left: 20,
-        bottom: 15
+    return Padding(
+      padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: Container(
+        height: mediaQuery.size.height*0.50,
+        padding: const EdgeInsets.only(
+          top: 29,
+          right: 20,
+          left: 20,
+          bottom: 15
+        ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18),
       ),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(18),
-    ),
-      child: Form(
-        key: formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              "Add New Task",
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                fontSize: 18,
-        
-                color: Colors.black,
-              ),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            TextFormField(
-              controller: titleController,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),
-              validator: (value) {
-                if(value==null||value.trim().isEmpty)
-                    {
-                      return "please Enter Task Title ";
-                    }
-              },
-              decoration:  InputDecoration(
-                hintText: "Enter Task Title",
-                errorStyle:  theme.textTheme.bodyMedium?.copyWith(
-              color: Colors.red,
-                fontWeight: FontWeight.w500,
-                  fontSize: 16,
-              ),
-              ),
-            ),// AddTask
-            const SizedBox(
-              height: 40,
-            ),
-            TextFormField(
-              controller: descriptionController,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),
-              maxLines:2,
-              validator: (value) {
-                if(value==null||value.trim().isEmpty)
-                {
-                  return "please Enter Description ";
-                }
-              },
-              decoration:  InputDecoration(
-                  hintText: "Enter Description ",
-                errorStyle:  theme.textTheme.bodyMedium?.copyWith(
-                  color: Colors.red,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ),
-            ), //Describtion
-        
-            Text(
-              "Select Time",
-             // textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-            InkWell(
-              onTap: () {
-             getSelectedDateTime();
-              },
-              child: Text(
-               DateFormat("dd/MM/yyyy").format(selectedDate),
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                "Add New Task",
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   fontSize: 18,
-              
+
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              TextFormField(
+                controller: titleController,
+                style: theme.textTheme.bodyMedium?.copyWith(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
-              ),
-            ),
-            const Spacer(),
-            FilledButton(onPressed: (){
-              if (formKey.currentState!.validate()){
-              TaskModel taskModel=TaskModel(
-                      title: titleController.text,
-                      description: descriptionController.text,
-                      selectedDate: selectedDate);
-              EasyLoading.show();
-              FirebaseUtils.addTaskModel(taskModel).then((value) {
-
-                Navigator.pop(context);
-                EasyLoading.dismiss();
-                SnackBarService.showSuccessMessage("msg");
-              }
-              );
-
-        
-            }
-              },
-              style:FilledButton.styleFrom(
-                backgroundColor: theme.primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                validator: (value) {
+                  if(value==null||value.trim().isEmpty)
+                      {
+                        return "please Enter Task Title ";
+                      }
+                },
+                decoration:  InputDecoration(
+                  hintText: "Enter Task Title",
+                  errorStyle:  theme.textTheme.bodyMedium?.copyWith(
+                color: Colors.red,
+                  fontWeight: FontWeight.w500,
+                    fontSize: 16,
                 ),
-              ) ,
-              child: Text(
-              "Save",
-              style: theme.textTheme.bodySmall,
-            ),
-            )
-          ],
-          
-        ),
-      ),
+                ),
+              ),// AddTask
+              const SizedBox(
+                height: 40,
+              ),
+              TextFormField(
+                controller: descriptionController,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+                maxLines:2,
+                validator: (value) {
+                  if(value==null||value.trim().isEmpty)
+                  {
+                    return "please Enter Description ";
+                  }
+                },
+                decoration:  InputDecoration(
+                    hintText: "Enter Description ",
+                  errorStyle:  theme.textTheme.bodyMedium?.copyWith(
+                    color: Colors.red,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                  ),
+                ),
+              ), //Describtion
 
-      );
+              Text(
+                "Select Time",
+               // textAlign: TextAlign.center,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+               getSelectedDateTime();
+                },
+                child: Text(
+                 DateFormat("dd MMM yyyy").format(selectedDate),
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodyLarge?.copyWith(
+                    fontSize: 18,
+
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              const Spacer(),
+              FilledButton(onPressed: (){
+                if (formKey.currentState!.validate()){
+                TaskModel taskModel=TaskModel(
+                        title: titleController.text,
+                        description: descriptionController.text,
+                        selectedDate: selectedDate);
+                EasyLoading.show();
+                FirebaseUtils.addTaskModel(taskModel).then((value) {
+
+                  Navigator.pop(context);
+                  EasyLoading.dismiss();
+                  SnackBarService.showSuccessMessage("msg");
+                }
+                );
+
+
+              }
+                },
+                style:FilledButton.styleFrom(
+                  backgroundColor: theme.primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ) ,
+                child: Text(
+                "Save",
+                style: theme.textTheme.bodySmall,
+              ),
+              )
+            ],
+
+          ),
+        ),
+
+        ),
+    );
   }
   getSelectedDateTime() async {
     DateTime? currentDate= await showDatePicker(

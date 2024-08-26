@@ -36,6 +36,7 @@ class _LayoutViewState extends State<LayoutView> {
             showModalBottomSheet(
               backgroundColor: Colors.transparent,
               context: context,
+              isScrollControlled: true,
               builder: (context) => AddTaskBottomSheetWidget(),
             );
       },
@@ -48,7 +49,7 @@ class _LayoutViewState extends State<LayoutView> {
           )
           ,
         ),
-      ) ,
+      ),
       body: screens[currentIndx],
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
