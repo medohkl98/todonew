@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todonew/core/firebase_utils.dart';
+import 'package:todonew/core/services/snack_bar_service.dart';
 
 import '../../core/page_routes_name.dart';
 
@@ -71,12 +73,12 @@ class _RegstrViewState extends State<RegstrView> {
                     {
                       return "please Enter your Full Name ";
                     }
-                    var regex =RegExp(
-                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"
-                    );
-                    if (!regex.hasMatch(value)){
-                      return "invalid email";
-                    }
+                    // var regex =RegExp(
+                    //     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"
+                    // );
+                    // if (!regex.hasMatch(value)){
+                    //   return "invalid email";
+                    // }
                     return null;
                   },
 
@@ -171,14 +173,14 @@ class _RegstrViewState extends State<RegstrView> {
                   validator: (value) {
                     if(value==null||value.trim().isEmpty)
                     {
-                      return "please Enter your Email ";
+                      return "please Enter password ";
                     }
-                    var regex =RegExp(
-                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"
-                    );
-                    if (!regex.hasMatch(value)){
-                      return "invalid email";
-                    }
+                    // var regex =RegExp(
+                    //     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"
+                    // );
+                    // if (!regex.hasMatch(value)){
+                    //   return "invalid pass";
+                    // }
                     return null;
                   },
                   obscureText: isObscurd,
@@ -244,7 +246,13 @@ class _RegstrViewState extends State<RegstrView> {
                     {
                       // print(emailController.text);
                       if (formKey.currentState!.validate()){
-                        print("object");
+                        FirebaseUtils.creatPass(emailController.text, passController.text
+                        ).then((value) {
+                          if (value){
+                            Navigator.pop(context);
+                            SnackBarService.showSuccessMessage("Accounst Successfuly Created ");
+                          }
+                        });
 
                       }
                     }

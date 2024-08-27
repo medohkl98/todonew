@@ -6,7 +6,8 @@ import 'package:todonew/models/task_model.dart';
 
 class TaskWidget extends StatelessWidget {
   final TaskModel data;
-  const TaskWidget({super.key, required this.data});
+  // bool isd=false;
+   TaskWidget({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +108,9 @@ class TaskWidget extends StatelessWidget {
             ),
             trailing: InkWell(
               onTap: (){
+               // isd!=isd;
                 FirebaseUtils.updateTask(data);
+
               },
               child: Container(
                 width: 75,
